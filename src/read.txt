@@ -1,0 +1,15 @@
+= Authentication and authorisation service using OOP
+
+----------------------------------------------------------------
+
+=Steps
+    -User knock on register by providing name, email and password as well
+    -User details are stored and processed for verification by providing random 6 digit
+    -User enters 6 digit and granted access
+
+    ====------------------ Authorisation flow ---------------====
+    -=-->A random number is generated and sent to user on the page
+    -=-->User then enters and another confirmation is sent to the email with a "YES" and "NO"
+    -=-->When User clicks "NO" then authorisation fails whilst
+    -=-->When User clicks a "YES" then access is granted and redirected to the page
+    -=-->User can log out anytime.
