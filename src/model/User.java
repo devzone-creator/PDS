@@ -1,18 +1,22 @@
 package model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String name;
     private String email;
     private String password;
+    private String hashedPassword;
     private String role;
     private boolean isActive;
 
-    public User(int id, String name, String email, String password){
+    public User(int id, String name, String email, String password, String hashedPassword){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.hashedPassword = hashedPassword;
     }
 
     public int getId(){return id;}
@@ -45,5 +49,18 @@ public class User {
     public void setIsActive(boolean active) {
         isActive = active;
         System.out.println(getName() + " is now " + (active ? "active" : "inactive"));
+    }
+
+    public boolean canAccess(String feature){
+        switch (this.role){
+            case "admin":
+                return true;
+            case "moderator":
+                return feature.equals("view") || feature.equals("edit");
+            case "user":
+                return feature.equals("view");
+            default:
+                return false;
+        }
     }
 }

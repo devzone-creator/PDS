@@ -23,5 +23,15 @@ public class Main {
 
         User user = authServices.login("karim@gmail.com", "pass153");
         authServices.logout();
+
+        System.out.println("\n=== Hashed password ===");
+        System.out.println("Original pass123");
+        System.out.println("Hashed : " + authServices.hashPassword("pass123"));
+
+        authServices.changeUserRole("abu@gmail.com", "admin");
+        User admin = authServices.login("abu@gmail.com", "pass123");
+
+        System.out.println("Can admin delete ? " + authServices.checkPermission(admin, "delete"));
+        System.out.println("Can admin view ? " + authServices.checkPermission(admin, "view"));
     }
 }
