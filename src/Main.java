@@ -7,11 +7,21 @@ public class Main {
 
         System.out.println("=== Registering User ===");
         authServices.registerUser("Abu", "abu@gmail.com", "pass123");
+        authServices.registerUser("Yakubu", "yakubu@gmail.com", "pass143");
+        authServices.registerUser("Karim", "karim@gmail.com", "pass153");
 
         System.out.println("\n=== Testing Login ===");
-        User loggedInUser = authServices.login("abu@gmail.com", "pass123");
+        User user1 = authServices.login("abu@gmail.com", "pass123");
+        User user2 = authServices.login("yakubu@gmail.com", "pass143");
+        User user3 = authServices.login("karim@gmail.com", "pass153");
 
         System.out.println("\n=== Testing Failed login ===");
         User failedLogin = authServices.login("abu@gmail.com", "wrongpass");
+
+        System.out.println("\n=== Testing user logout ===");
+        authServices.logout();
+
+        User user = authServices.login("karim@gmail.com", "pass153");
+        authServices.logout();
     }
 }

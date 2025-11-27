@@ -8,6 +8,7 @@ import java.util.List;
 public class AuthServices {
     private List<User> users = new ArrayList<>();
     private int nextId = 1;
+    private User currentUser;
 
     public User registerUser(String name, String email, String password){
         User newUser = new User(nextId++, name, email, password);
@@ -25,6 +26,7 @@ public class AuthServices {
                 if (user.getPassword().equals(password)){
                     if (user.isActive()){
                         System.out.println("Login successful! " + user.getName());
+                        currentUser = user;
                         return user;
                     }
                     else {
@@ -40,5 +42,18 @@ public class AuthServices {
         }
         System.out.println("User not found");
         return null;
+    }
+
+    public void logout(){
+        if(currentUser != null){
+            System.out.println("Goodbye " + currentUser.getName() + "!");
+            currentUser = null;
+        } else{
+            System.out.println("No user is logged in!");
+        }
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
     }
 }
